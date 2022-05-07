@@ -1,0 +1,16 @@
+Seg_Rule -name OUT_CORN_RULE -type END -segnum 1 -segpara CORN_TYPE 35 110
+Seg_Rule -name IN_CORN_RULE -type END -segnum 1 -segpara CORN_TYPE 25 105
+Seg_Rule -name HALF_HALF_RULE -type WHOLE -segnum 2 -segpara CORN_TYPE %+0 -30 CORN_TYPE %+0 +30
+Seg_Rule -name MID_SEG_RULE -type MID_FINE -eslen 1000 -mark MID_TYPE
+Seg_Rule -name NO_EDGE_END -type END -segnum 0
+Seg_Rule -name MID_LONG_RULE -type MID_VERT -usmark UB_TYPE -vtype LEFT -vdist 1024 -psmark PT_TYPE -psnum 8 -pslen 160
+
+Default_Outer_Rule OUT_CORN_RULE
+Default_Inner_Rule IN_CORN_RULE
+Default_Direct_Rule NO_EDGE_END
+Default_Middel_Rule MID_SEG_RULE
+Default_Conflict_Rule NULL
+
+Seg_Edge Any Outer Outer -len 10 3500 -wseg HALF_HALF_RULE
+Seg_Edge Any Inner Inner -len 3500 7000 -idefault -odefault -mdefault
+Seg_Edge Any Any Any -len 7000 INF -idefault -odefault -mseg MID_SEG_RULE
